@@ -16,7 +16,7 @@
     </div>
 </div>
 <script src="{{ Asset::get('js/axios.min.js') }}"></script>
-<script src="{{ Asset::get('js/vue.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="{{ Asset::get('js/vue-multiselect.min.js') }}"></script>
 <script>
     Vue.component('vue-multiselect', window.VueMultiselect.default);

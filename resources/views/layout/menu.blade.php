@@ -2,6 +2,7 @@
     <h4 class="ieducar-quick-search-title">Busca rápida</h4>
     <quick-search></quick-search>
 </div>
+@isset($menu)
 <ul class="ieducar-sidebar-menu">
 @foreach($menu as $item)
     @if($item->hasLinkInSubmenu())
@@ -11,3 +12,4 @@
     @endif
 @endforeach
 </ul>
+@endisset

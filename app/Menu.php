@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property Collection $children
+ */
 class Menu extends Model
 {
     /**
@@ -108,11 +111,7 @@ class Menu extends Model
     public static function user(User $user)
     {
         if ($user->isAdmin()) {
-            return static::query()
-                ->with('children.children.children.children.children')
-                ->whereNull('parent_id')
-                ->orderBy('order')
-                ->get();
+            return static::roots();
         }
 
         $ids = $user->menu()->pluck('process')->sortBy('process')->toArray();
@@ -161,5 +160,14 @@ class Menu extends Model
             ->whereNull('parent_id')
             ->orderBy('order')
             ->get();
+    }
+
+    public static function roots()
+    {
+        return static::query()
+                ->with('children.children.children.children.children')
+                ->whereNull('parent_id')
+                ->orderBy('order')
+                ->get();
     }
 }
